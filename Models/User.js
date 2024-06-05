@@ -15,7 +15,7 @@ User.init(
         allowNull: false,
         max: 120,
         min: 15,
-      },
+    },
     mail: {
       type: DataTypes.STRING,
       allowNull: false,
