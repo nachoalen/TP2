@@ -3,8 +3,8 @@ import User from "../Models/User.js";
 class UserController {
   createUser = async (req, res) => {
     try {
-      const { userName, age,  mail, password } = req.body;
-      const data = await User.create({ userName, age, mail, password });
+      const { userName, age,  email, password } = req.body;
+      const data = await User.create({ userName, age, email, password });
       res.status(201).send({
         success: true,
         message: `Usuario ${data.userName} creado exitosamente`,
@@ -14,10 +14,10 @@ class UserController {
     }
   };
 
-  readAllUser = async (req, res) => {
+  readAllUsers = async (req, res) => {
     try {
       const data = await User.findAll({
-        attributes: ["userName", "age", "mail", "active"],
+        attributes: ["userName", "age", "email", "isActive"],
       });
       res.status(201).send({
         success: true,
@@ -32,7 +32,7 @@ class UserController {
     try {
       const { id } = req.params;
       const data = await User.findAll({
-        attributes: ["userName", "age", "email", "active"],
+        attributes: ["userName", "age", "email", "isActive"],
         where: { id },
       });
       res.status(201).send({
@@ -60,9 +60,9 @@ class UserController {
   updateUser = async (req, res) => {
     try {
       const { id } = req.params;
-      const { userName, age, email, active } = req.body;
+      const { userName, age, email, isActive } = req.body;
       const data = await User.update(
-        { userName, age, email, active },
+        { userName, age, email, isActive },
         { where: { id } }
       );
       res.status(201).send({

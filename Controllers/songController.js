@@ -14,10 +14,10 @@ class SongController {
     }
   };
 
-  readAllSong = async (req, res) => {
+  readAllSongs = async (req, res) => {
     try {
       const data = await Song.findAll({
-        attributes: ["name", "lengthSeconds", "artistName", "active"],
+        attributes: ["name", "lengthSeconds", "artistName", "isActive"],
       });
       res.status(201).send({
         success: true,
@@ -31,8 +31,8 @@ class SongController {
   readSongById = async (req, res) => {
     try {
       const { id } = req.params;
-      const data = await Song.findAll({
-        attributes: ["name", "lengthSeconds", "artistName", "active"],
+      const data = await Song.findOne({
+        attributes: ["name", "lengthSeconds", "artistName", "isActive"],
         where: { id },
       });
       res.status(201).send({
@@ -60,9 +60,9 @@ class SongController {
   updateSong = async (req, res) => {
     try {
       const { id } = req.params;
-      const { name, lengthSeconds, artistName, active } = req.body;
+      const { name, lengthSeconds, artistName, isActive } = req.body;
       const data = await Song.update(
-        { name, lengthSeconds, artistName, active },
+        { name, lengthSeconds, artistName, isActive },
         { where: { id } }
       );
       res.status(201).send({

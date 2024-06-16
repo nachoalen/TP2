@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import connectionDb from "../connection/connectionDb";
+import connectionDb from "../connection/connectionDb.js";
 
 class User extends Model {}
 
@@ -16,7 +16,7 @@ User.init(
         max: 120,
         min: 15,
     },
-    mail: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
