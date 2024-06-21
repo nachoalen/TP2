@@ -13,6 +13,7 @@ Song.init(
     lengthSeconds: {
       type: DataTypes.INTEGER,
       min: 1,
+      allowNull: false,
     },
     artistName: {
       type: DataTypes.STRING,
