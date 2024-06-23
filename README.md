@@ -1,18 +1,23 @@
 # TP FINAL IGNACIO ALEN
 ## App de Música.
 
-Para que el app funcione se necesita:
+Para que el app funcione correctamente se necesita:
 <pre>
     Una aplicacion para utilizar SQL (XAMP, MAMP).
     Tener una versión actualizada de NodeJs.
-    Instalar express mediante el comando npm install express.
-    Inicializar una base de datos con los datos de la connectionDb.js ("tpfinalalen", "root", "nachomiercoles")
+    Instalar sequelize | npm install --save sequelize. +  npm install --save mysql2 + npm install --save tedious.
+    Instalar express | npm install express.
+    Instalar cookieparser | npm install cookie-parser.
+    Instalar bcrypt | npm install bcrypt.
+    Instalar jsonwebtoken | npm install jsonwebtoken.
+    Inicializar una base de datos con los datos en el env.dev.
 </pre>
 
 Links a probar:
 USUARIO
 <pre>
-    http://localhost:8080/app/user POST, USA PARAMETROS (String userName, Integer age, Email@email format email, Alphanumeric 6-12 chars String password )
+    http://localhost:8080/app/user POST CREA USARIO, USA PARAMETROS (String userName, Integer age, Email@email format email, Alphanumeric 6-12 chars String password )
+    http://localhost:8080/app/user/login POST, LOGIN Permite usar otros comandos. (String email, String password)
     http://localhost:8080/app/user GET (Trae los Usuarios)
     http://localhost:8080/app/user/1 GET (Trae el primer usuario)
     http://localhost:8080/app/user/1 PUT, USA PARAMETROS (String userName, Integer age, Email@email format email, Alphanumeric 6-12 chars String password )

@@ -1,4 +1,5 @@
 import User from "../Models/User.js";
+import { generateToken, verifyToken } from "../utils/token.js";
 
 class UserController {
   createUser = async (req, res) => {
@@ -73,5 +74,42 @@ class UserController {
       res.status(400).send({ succces: false, message: error.message });
     }
   };
+
+  login = async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      const data = await User.findOne({ where: { email } });
+      if (!data) throw new Error("No se pudo loggear por email");
+      const validatePassword = await data.validatePassword(password);
+      if (!validatePassword) throw new Error("No se pudo loggear por password");
+      const payload = {
+        id: data.id,
+        name: data.name,
+      };
+      const token = generateToken(payload);
+      res.cookie("token", token);
+      res.status(200).send({
+        success: true,
+        message: "usuario logueado con exito",
+      });
+    } catch (error) {
+      res.status(400).send({ succces: false, message: error.message });
+    }
+  };
+
+  me = async (req, res) => {
+    try {
+     
+      const { user } = req;
+      console.log(`🚀 ~ UserController ~ me= ~ user:`, user)
+      res.status(200).send({
+        success: true,
+        message: user,
+      });
+    } catch (error) {
+      res.status(400).send({ succces: false, message: error.message });
+    }
+  };
+
 }
   export default UserController;
