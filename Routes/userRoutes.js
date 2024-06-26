@@ -9,6 +9,7 @@ const UserRoutes = Router();
 UserRoutes.post("/", userController.createUser);
 UserRoutes.post("/login", userController.login);
 UserRoutes.use(validateLogin);
+UserRoutes.post("/logout", userController.logout)
 
 UserRoutes.get("/me", userController.me)
 
